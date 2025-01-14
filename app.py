@@ -1,13 +1,16 @@
 import streamlit as st
 from textblob import TextBlob
 import nltk
-from textblob import download_corpora
 
-# Ensure required corpora are downloaded
-nltk.download('brown')
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-download_corpora()
+# Ensure necessary NLTK corpora are available
+try:
+    nltk.data.find('corpora/brown')
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('taggers/averaged_perceptron_tagger')
+except LookupError:
+    nltk.download('brown')
+    nltk.download('punkt')
+    nltk.download('averaged_perceptron_tagger')
 
 # List of rhymes related to "stench" and "The Aroma Coin" categorized by sentiment
 rhymes = {
@@ -84,3 +87,4 @@ if st.button("Analyze"):
         st.info(f"Rhyme: {rhyme}")
     else:
         st.error("Please enter a message to analyze.")
+
