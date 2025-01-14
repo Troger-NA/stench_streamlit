@@ -1,6 +1,13 @@
 import streamlit as st
 from textblob import TextBlob
-import random
+import nltk
+from textblob import download_corpora
+
+# Ensure required corpora are downloaded
+nltk.download('brown')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+download_corpora()
 
 # List of rhymes related to "stench" and "The Aroma Coin" categorized by sentiment
 rhymes = {
